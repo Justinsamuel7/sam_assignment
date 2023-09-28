@@ -12,15 +12,33 @@ import {Circle} from 'rc-progress'
 
 const Activateanswer=()=>{
 
-    useEffect(() => {
-        startCountdown(60);
-      }, []);
-    
-      const [countdown, setCountdown] = useState();
-      let [color, setColor]=useState("blue")
-      let [percentage, setPercentage]=useState(1)
+  useEffect(() => {
 
-    
+    startCountdown(60);
+
+    const interval = setInterval(() => {
+      setPercent((prevPercent) => {
+        if (prevPercent < 100) {
+          return prevPercent + 1.6; 
+        } else {
+          clearInterval(interval); 
+          return prevPercent;
+        }
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(interval); 
+    };
+
+  }, []);  
+  
+  
+      const [percent, setPercent] = useState(0);
+      const [countdown, setCountdown] = useState();
+      const [warningText, setWarningText] = useState(false)
+      let [color, setColor]=useState("blue")
+
       const interval = useRef();
     
       const startCountdown = (value) => {
@@ -31,22 +49,24 @@ const Activateanswer=()=>{
           value--;
 
           if (value === 10) {
+            setWarningText(true)
             setColor("orange");
           }
           if (value === 0) {
             clearInterval(interval.current);
           }
-
-          // setPercentage(percentage + 1.6)
           setCountdown(value);
         }, 1000);
-      };
+
+        }
+
+      
     
     return(
       <div id="answerActivated">
         <div className="answerDeactivated-Top">
           <div style={{width:128 , height: 128, position:"relative"}}>
-            <Circle percent={percentage} strokeColor={color} strokeWidth={7} trailColor="white" trailWidth={7} style={{position:"absolute"}} strokeLinecap="square"/>
+            <Circle percent={percent} strokeColor="white" strokeWidth={7} trailColor={color} trailWidth={7} style={{position:"absolute"}} strokeLinecap="square"/>
 
           </div>
 
@@ -59,6 +79,7 @@ const Activateanswer=()=>{
               </div>
 
         </div>
+        {warningText ? <p style={{color:"orange"}}>Please start concluding your answer!</p> : ''}
         <div className="answerDeactivated-Bottom">
           <p>Answering Time:</p>
           <p id="time"><LuAlarmClock className='clockiconBottom'/><span id="secondsBlue"> <b>{countdown} seconds</b> </span><span id="afterseconds">left</span></p>
