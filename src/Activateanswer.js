@@ -66,7 +66,7 @@ const Activateanswer=()=>{
       <div id="answerActivated">
         <div className="answerDeactivated-Top">
           <div style={{width:128 , height: 128, position:"relative"}}>
-            <Circle percent={percent} strokeColor="white" strokeWidth={7} trailColor={color} trailWidth={7} style={{position:"absolute"}} strokeLinecap="square"/>
+            <Circle percent={percent} strokeColor="#90cdff" strokeWidth={7} trailColor={color} trailWidth={7} style={{position:"absolute"}} strokeLinecap="square"/>
 
           </div>
 

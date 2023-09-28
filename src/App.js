@@ -36,11 +36,13 @@ const deactivateanswer=()=>{
     <div id="answerDeactivated">
       <div className="answerDeactivated-Top">
         <div id="outerCircle">
+          <div id="outerwhite">
             <div id="micContainerRipple2">
               <div id="micContainerRipple1">
                 <div className="micContainer"> <MdOutlineKeyboardVoice id="DeactivatedBottomMic"/> </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
       <div className="answerDeactivated-Bottom">
@@ -52,7 +54,7 @@ const deactivateanswer=()=>{
 }
 
 export default function App() {
-  const [mic, setMic] = useState(false)
+  const [mic, setMic] = useState(true)
   const [questionboxId, setQuestionboxId] = useState('defaultQid');
 
   useEffect(() => {
