@@ -54,7 +54,7 @@ const deactivateanswer=()=>{
 }
 
 export default function App() {
-  const [mic, setMic] = useState(true)
+  const [mic, setMic] = useState(false)
   const [questionboxId, setQuestionboxId] = useState('defaultQid');
 
   useEffect(() => {
