@@ -1,32 +1,35 @@
+//File Name : App.js
+
+
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
-import './style.css';
+import './App.css';
 import './Animations.css';
 import {LuAlarmClock} from 'react-icons/lu';
 import {MdOutlineKeyboardVoice} from "react-icons/md"
+import Activateanswer from './Activateanswer';
 
+// const activateanswer=()=>{
 
-const activateanswer=()=>{
+//   return(
+//     <div id="answerActivated">
+//       <div className="answerDeactivated-Top">
+//         <div id="outerCircle">
+//             <div class="wave-container">
+//             <div class="wave"></div>
+//             <div class="wave"></div>
+//             <div className="micContainerActive"> <MdOutlineKeyboardVoice id="DeactivatedBottomMic"/> </div>
+//             </div>
 
-  return(
-    <div id="answerActivated">
-      <div className="answerDeactivated-Top">
-        <div id="outerCircle">
-            <div class="wave-container">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div className="micContainerActive"> <MdOutlineKeyboardVoice id="DeactivatedBottomMic"/> </div>
-            </div>
-
-        </div>
-      </div>
-      <div className="answerDeactivated-Bottom">
-        <p>Answering Time:</p>
-        <p id="time"><LuAlarmClock className='clockiconBottom'/><span id="secondsBlue"> 60 seconds </span>left</p>
-      </div>
-    </div>
-  );
-}
+//         </div>
+//       </div>
+//       <div className="answerDeactivated-Bottom">
+//         <p>Answering Time:</p>
+//         <p id="time"><LuAlarmClock className='clockiconBottom'/><span id="secondsBlue"> <b>60 seconds</b> </span><span id="afterseconds">left</span></p>
+//       </div>
+//     </div>
+//   );
+// }
 const deactivateanswer=()=>{
   
   return(
@@ -42,18 +45,18 @@ const deactivateanswer=()=>{
       </div>
       <div className="answerDeactivated-Bottom">
         <p>Answering Time:</p>
-        <p id="time"><LuAlarmClock className='clockiconBottom'/><span id="secondsBlue"> 60 seconds </span>left</p>
+        <p id="time"><LuAlarmClock className='clockiconBottom'/><span id="secondsBlue"> <b>60 seconds</b> </span><span id="afterseconds">left</span></p>
       </div>
     </div>
   );
 }
 
 export default function App() {
-  const [mic, setMic] = useState(false)
+  const [mic, setMic] = useState(true)
   const [questionboxId, setQuestionboxId] = useState('defaultQid');
 
   useEffect(() => {
-    startCountdown(5);
+    startCountdown(20);
   }, []);
 
   const [countdown, setCountdown] = useState();
@@ -104,7 +107,7 @@ export default function App() {
         </div>
 
         <div id="answerbox">
-         {mic ? activateanswer() : deactivateanswer()}
+         {mic ? <Activateanswer/>: deactivateanswer()}
         </div>
       </div>
     </div>
