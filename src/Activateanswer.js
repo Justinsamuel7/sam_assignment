@@ -19,13 +19,13 @@ const Activateanswer=()=>{
     const interval = setInterval(() => {
       setPercent((prevPercent) => {
         if (prevPercent < 100) {
-          return prevPercent + 0.41; 
+          return prevPercent + 1.6667; 
         } else {
           clearInterval(interval); 
           return prevPercent;
         }
       });
-    }, 250);
+    }, 1000);
 
     return () => {
       clearInterval(interval); 
